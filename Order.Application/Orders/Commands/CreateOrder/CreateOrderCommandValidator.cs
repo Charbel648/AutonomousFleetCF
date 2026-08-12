@@ -12,10 +12,13 @@ public class CreateOrderCommandValidator : AbstractValidator<CreateOrderCommand>
 
         RuleFor(command => command.PickupAddress)
             .NotEmpty()
-            .MaximumLength(250);
+            .MaximumLength(300);
 
         RuleFor(command => command.DeliveryAddress)
             .NotEmpty()
-            .MaximumLength(250);
+            .MaximumLength(300);
+
+        RuleFor(command => command.PriorityScore)
+            .InclusiveBetween(0, 100);
     }
 }

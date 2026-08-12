@@ -1,7 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Order.Domain.Enums;
-using OrderEntity = global::Order.Domain.Entities.Order;
+using OrderEntity = Order.Domain.Entities.Order;
 
 namespace Order.Persistance.Configurations;
 
@@ -16,36 +15,71 @@ public class OrderConfiguration : IEntityTypeConfiguration<OrderEntity>
         builder.Ignore(order => order.Id);
 
         builder.Property(order => order.TenantId)
-            .IsRequired()
-            .HasMaxLength(100);
+            .HasColumnName("tenant_id")
+            .HasMaxLength(100)
+            .IsRequired();
 
         builder.Property(order => order.CustomerId)
-            .IsRequired()
-            .HasMaxLength(100);
+            .HasColumnName("customer_id")
+            .HasMaxLength(100)
+            .IsRequired();
 
         builder.Property(order => order.PickupAddress)
-            .IsRequired()
-            .HasMaxLength(250);
+            .HasColumnName("pickup_address")
+            .HasMaxLength(300)
+            .IsRequired();
 
         builder.Property(order => order.DeliveryAddress)
-            .IsRequired()
-            .HasMaxLength(250);
+            .HasColumnName("delivery_address")
+            .HasMaxLength(300)
+            .IsRequired();
 
-        builder.Property(order => order.AssignedVehicleId);
+        builder.Property(order => order.AssignedVehicleId)
+            .HasColumnName("assigned_vehicle_id");
 
         builder.Property(order => order.Status)
-            .HasConversion(
-                status => status.ToString(),
-                value => Enum.Parse<OrderStatus>(value))
-            .IsRequired()
-            .HasMaxLength(50);
+            .HasColumnName("status")
+            .HasConversion<string>()
+            .HasMaxLength(50)
+            .IsRequired();
+
+        builder.Property(order => order.PriorityScore)
+            .HasColumnName("priority_score")
+            .HasDefaultValue(0)
+            .IsRequired();
 
         builder.Property(order => order.CreatedAt)
+            .HasColumnName("created_at")
             .IsRequired();
 
         builder.Property(order => order.LastUpdatedAt)
+            .HasColumnName("last_updated_at")
             .IsRequired();
 
-        builder.HasIndex(order => new { order.TenantId, order.OrderId });
+        builder.Property(order => order.QueuedAt)
+            .HasColumnName("queued_at");
+
+        builder.Property(order => order.AssignedAt)
+            .HasColumnName("assigned_at");
+
+        builder.Property(order => order.StartedAt)
+            .HasColumnName("started_at");
+
+        builder.Property(order => order.CompletedAt)
+            .HasColumnName("completed_at");
+
+        builder.Property(order => order.FailedAt)
+            .HasColumnName("failed_at");
+
+        builder.Property(order => order.CancelledAt)
+            .HasColumnName("cancelled_at");
+
+        builder.HasIndex(order => order.TenantId);
+
+        builder.HasIndex(order => new
+        {
+            order.TenantId,
+            order.Status
+        });
     }
 }

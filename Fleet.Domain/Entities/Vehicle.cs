@@ -4,37 +4,8 @@ namespace Fleet.Domain.Entities;
 
 public class Vehicle
 {
-    private Vehicle()
-    {
-    }
-
-    public Vehicle(
-        string tenantId,
-        string registrationNumber,
-        decimal batteryLevel,
-        decimal latitude,
-        decimal longitude)
-    {
-        if (string.IsNullOrWhiteSpace(tenantId))
-            throw new ArgumentException("Tenant id is required", nameof(tenantId));
-
-        if (string.IsNullOrWhiteSpace(registrationNumber))
-            throw new ArgumentException("Registration number is required", nameof(registrationNumber));
-
-        ValidateBatteryLevel(batteryLevel);
-        ValidateCoordinates(latitude, longitude);
-
-        VehicleId = Guid.NewGuid();
-        TenantId = tenantId;
-        RegistrationNumber = registrationNumber;
-        BatteryLevel = batteryLevel;
-        Latitude = latitude;
-        Longitude = longitude;
-        Status = VehicleStatus.Available;
-        LastTelemetryAt = DateTime.UtcNow;
-        CreatedAt = DateTime.UtcNow;
-        LastUpdatedAt = DateTime.UtcNow;
-    }
+    private const int MinimumBatteryLevel = 0;
+    private const int MaximumBatteryLevel = 100;
 
     public Guid VehicleId { get; private set; }
 
@@ -46,11 +17,13 @@ public class Vehicle
 
     public VehicleStatus Status { get; private set; }
 
-    public decimal BatteryLevel { get; private set; }
+    public int BatteryLevel { get; private set; }
 
     public decimal Latitude { get; private set; }
 
     public decimal Longitude { get; private set; }
+
+    public string TelemetryData { get; private set; } = "{}";
 
     public DateTime LastTelemetryAt { get; private set; }
 
@@ -58,7 +31,45 @@ public class Vehicle
 
     public DateTime LastUpdatedAt { get; private set; }
 
-    public void UpdateTelemetry(decimal batteryLevel, decimal latitude, decimal longitude)
+    private Vehicle()
+    {
+    }
+
+    public Vehicle(
+        string tenantId,
+        string registrationNumber,
+        int batteryLevel,
+        decimal latitude,
+        decimal longitude,
+        string telemetryData = "{}")
+    {
+        if (string.IsNullOrWhiteSpace(tenantId))
+            throw new ArgumentException("Tenant id is required", nameof(tenantId));
+
+        if (string.IsNullOrWhiteSpace(registrationNumber))
+            throw new ArgumentException("Registration number is required", nameof(registrationNumber));
+
+        ValidateBatteryLevel(batteryLevel);
+        ValidateCoordinates(latitude, longitude);
+
+        VehicleId = Guid.NewGuid();
+        TenantId = tenantId.Trim();
+        RegistrationNumber = registrationNumber.Trim();
+        Status = VehicleStatus.Available;
+        BatteryLevel = batteryLevel;
+        Latitude = latitude;
+        Longitude = longitude;
+        TelemetryData = NormalizeTelemetryData(telemetryData);
+        CreatedAt = DateTime.UtcNow;
+        LastUpdatedAt = CreatedAt;
+        LastTelemetryAt = CreatedAt;
+    }
+
+    public void UpdateTelemetry(
+        int batteryLevel,
+        decimal latitude,
+        decimal longitude,
+        string telemetryData = "{}")
     {
         ValidateBatteryLevel(batteryLevel);
         ValidateCoordinates(latitude, longitude);
@@ -66,16 +77,15 @@ public class Vehicle
         BatteryLevel = batteryLevel;
         Latitude = latitude;
         Longitude = longitude;
+        TelemetryData = NormalizeTelemetryData(telemetryData);
         LastTelemetryAt = DateTime.UtcNow;
+
         Touch();
     }
 
-    public void ModifyState(VehicleStatus newStatus)
+    public void ModifyState(VehicleStatus status)
     {
-        if (Status == VehicleStatus.Offline && newStatus == VehicleStatus.Running)
-            throw new InvalidOperationException("Offline vehicles cannot directly enter running state");
-
-        Status = newStatus;
+        Status = status;
         Touch();
     }
 
@@ -94,10 +104,12 @@ public class Vehicle
         Touch();
     }
 
-    private static void ValidateBatteryLevel(decimal batteryLevel)
+    private static void ValidateBatteryLevel(int batteryLevel)
     {
-        if (batteryLevel < 0 || batteryLevel > 100)
-            throw new ArgumentOutOfRangeException(nameof(batteryLevel), "Battery level must be between 0 and 100");
+        if (batteryLevel < MinimumBatteryLevel || batteryLevel > MaximumBatteryLevel)
+            throw new ArgumentOutOfRangeException(
+                nameof(batteryLevel),
+                "Battery level must be between 0 and 100");
     }
 
     private static void ValidateCoordinates(decimal latitude, decimal longitude)
@@ -107,6 +119,13 @@ public class Vehicle
 
         if (longitude < -180 || longitude > 180)
             throw new ArgumentOutOfRangeException(nameof(longitude), "Longitude must be between -180 and 180");
+    }
+
+    private static string NormalizeTelemetryData(string telemetryData)
+    {
+        return string.IsNullOrWhiteSpace(telemetryData)
+            ? "{}"
+            : telemetryData.Trim();
     }
 
     private void Touch()

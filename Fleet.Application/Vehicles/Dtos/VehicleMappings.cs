@@ -9,12 +9,12 @@ public static class VehicleMappings
         return new VehicleDto
         {
             Id = vehicle.Id,
-            TenantId = vehicle.TenantId,
             RegistrationNumber = vehicle.RegistrationNumber,
-            Status = vehicle.Status,
+            Status = vehicle.Status.ToString(),
             BatteryLevel = vehicle.BatteryLevel,
             Latitude = vehicle.Latitude,
             Longitude = vehicle.Longitude,
+            TelemetryData = vehicle.TelemetryData,
             LastTelemetryAt = vehicle.LastTelemetryAt,
             CreatedAt = vehicle.CreatedAt,
             LastUpdatedAt = vehicle.LastUpdatedAt
