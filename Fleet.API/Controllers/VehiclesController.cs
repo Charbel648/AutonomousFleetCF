@@ -1,14 +1,17 @@
-﻿using Fleet.Application.Vehicles.Commands.ModifyVehicleState;
+﻿using Fleet.API.Auth;
+using Fleet.Application.Vehicles.Commands.ModifyVehicleState;
 using Fleet.Application.Vehicles.Commands.RegisterVehicle;
 using Fleet.Application.Vehicles.Dtos;
 using Fleet.Application.Vehicles.Queries.ListTenantVehicles;
 using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Fleet.API.Controllers;
 
 [ApiController]
 [Route("vehicles")]
+[Authorize]
 public class VehiclesController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -19,6 +22,8 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize(Policy = PermissionNames.CanRegisterVehicle)]
+    [RequirePermission(PermissionNames.CanRegisterVehicle)]
     public async Task<ActionResult<VehicleDto>> RegisterVehicle(
         [FromBody] RegisterVehicleCommand command,
         CancellationToken cancellationToken)
@@ -29,6 +34,8 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpGet]
+    [Authorize(Policy = PermissionNames.CanReadVehicles)]
+    [RequirePermission(PermissionNames.CanReadVehicles)]
     public async Task<ActionResult<List<VehicleDto>>> ListTenantVehicles(CancellationToken cancellationToken)
     {
         var vehicles = await _mediator.Send(new ListTenantVehiclesQuery(), cancellationToken);
@@ -37,6 +44,8 @@ public class VehiclesController : ControllerBase
     }
 
     [HttpPatch("{id:guid}/state")]
+    [Authorize(Policy = PermissionNames.CanModifyVehicleState)]
+    [RequirePermission(PermissionNames.CanModifyVehicleState)]
     public async Task<ActionResult<VehicleDto>> ModifyVehicleState(
         [FromRoute] Guid id,
         [FromBody] ModifyVehicleStateCommand command,
