@@ -13,37 +13,51 @@ namespace Fleet.API.Auth;
 public class DevAuthController : ControllerBase
 {
     private readonly JwtOptions _jwtOptions;
+    private readonly IWebHostEnvironment _environment;
 
-    public DevAuthController(IOptions<JwtOptions> jwtOptions)
+    public DevAuthController(
+        IOptions<JwtOptions> jwtOptions,
+        IWebHostEnvironment environment)
     {
         _jwtOptions = jwtOptions.Value;
+        _environment = environment;
     }
 
     [AllowAnonymous]
     [HttpPost("dev-token")]
-    public ActionResult CreateToken([FromBody] DevTokenRequest request)
+    public ActionResult CreateToken([FromBody] DevLoginRequest request)
     {
-        if (string.IsNullOrWhiteSpace(request.UserId))
-            return BadRequest(new { Message = "UserId is required" });
+        if (!_environment.IsDevelopment())
+            return NotFound();
 
-        if (string.IsNullOrWhiteSpace(request.TenantId))
-            return BadRequest(new { Message = "TenantId is required" });
+        if (request.UserId != "charbel.admin"
+            || request.Password != "Admin@2026"
+            || request.TenantId != "tenant-a")
+        {
+            return Unauthorized(new
+            {
+                Message = "Invalid development credentials"
+            });
+        }
 
-        if (string.IsNullOrWhiteSpace(request.Role))
-            request.Role = SystemRoles.Operator;
+        var role = SystemRoles.Admin;
 
-        var permissions = request.Permissions.Count > 0
-            ? request.Permissions
-            : GetDefaultPermissions(request.Role);
+        var permissions = new List<string>
+        {
+            PermissionNames.CanRegisterVehicle,
+            PermissionNames.CanReadVehicles,
+            PermissionNames.CanModifyVehicleState,
+            PermissionNames.CanDeleteVehicle
+        };
 
         var claims = new List<Claim>
         {
             new(JwtClaimTypes.Subject, request.UserId),
             new(JwtClaimTypes.TenantId, request.TenantId),
-            new(JwtClaimTypes.Role, request.Role)
+            new(JwtClaimTypes.Role, role)
         };
 
-        foreach (var permission in permissions.Distinct())
+        foreach (var permission in permissions)
         {
             claims.Add(new Claim(JwtClaimTypes.Permission, permission));
         }
@@ -66,49 +80,19 @@ public class DevAuthController : ControllerBase
             AccessToken = accessToken,
             TokenType = "Bearer",
             ExpiresAt = expiresAt,
+            UserId = request.UserId,
             TenantId = request.TenantId,
-            Role = request.Role,
+            Role = role,
             Permissions = permissions
         });
     }
-
-    private static List<string> GetDefaultPermissions(string role)
-    {
-        if (role == SystemRoles.Admin)
-        {
-            return new List<string>
-            {
-                PermissionNames.CanRegisterVehicle,
-                PermissionNames.CanReadVehicles,
-                PermissionNames.CanModifyVehicleState,
-                PermissionNames.CanDeleteVehicle
-            };
-        }
-
-        if (role == SystemRoles.Supervisor)
-        {
-            return new List<string>
-            {
-                PermissionNames.CanReadVehicles
-            };
-        }
-
-        return new List<string>
-        {
-            PermissionNames.CanRegisterVehicle,
-            PermissionNames.CanReadVehicles,
-            PermissionNames.CanModifyVehicleState
-        };
-    }
 }
 
-public class DevTokenRequest
+public class DevLoginRequest
 {
-    public string UserId { get; set; } = "dev-user";
+    public string UserId { get; set; } = string.Empty;
 
-    public string TenantId { get; set; } = "tenant-a";
+    public string Password { get; set; } = string.Empty;
 
-    public string Role { get; set; } = SystemRoles.Operator;
-
-    public List<string> Permissions { get; set; } = new();
+    public string TenantId { get; set; } = string.Empty;
 }
