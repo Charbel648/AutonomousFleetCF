@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="12.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.6.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutonomousFleet.Services.Order.Application\AutonomousFleet.Services.Order.Application.csproj" />
+    <ProjectReference Include="..\AutonomousFleet.Services.Order.Persistence\AutonomousFleet.Services.Order.Persistence.csproj" />
+    <ProjectReference Include="..\AutonomousFleet.Services.Order.Infrastructure\AutonomousFleet.Services.Order.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
