@@ -3,36 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{F65E5B31-6199-47FC-B64E-47857A889A83}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{AA78F6BB-9EA3-42BD-8E44-24F770DEFE96}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Fleet", "Fleet", "{192E3B36-8E7D-4E4D-8C00-BD4037741D5F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Fleet.API", "src\Services\Fleet\AutonomousFleet.Services.Fleet.API\AutonomousFleet.Services.Fleet.API.csproj", "{BF832829-8DA8-4834-BE72-93E914022313}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Fleet.Application", "src\Services\Fleet\AutonomousFleet.Services.Fleet.Application\AutonomousFleet.Services.Fleet.Application.csproj", "{D86EB511-4C73-444B-B664-60316C2139F8}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Fleet.Domain", "src\Services\Fleet\AutonomousFleet.Services.Fleet.Domain\AutonomousFleet.Services.Fleet.Domain.csproj", "{E1EFD99B-5696-480E-88FF-91D571F42992}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Fleet.Infrastructure", "src\Services\Fleet\AutonomousFleet.Services.Fleet.Infrastructure\AutonomousFleet.Services.Fleet.Infrastructure.csproj", "{2FCC21D6-E774-4FCE-8DC9-E65DC871BA5C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Fleet.Persistence", "src\Services\Fleet\AutonomousFleet.Services.Fleet.Persistence\AutonomousFleet.Services.Fleet.Persistence.csproj", "{AF1FCDEE-5F41-4530-B6BB-79BB7EAA5E06}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Order", "Order", "{F00AB56A-0B39-44E1-AA7B-2643E61D10C3}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Order.API", "src\Services\Order\AutonomousFleet.Services.Order.API\AutonomousFleet.Services.Order.API.csproj", "{43879DD3-7EF8-4CC9-80AF-3B8FA479A944}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Order.Application", "src\Services\Order\AutonomousFleet.Services.Order.Application\AutonomousFleet.Services.Order.Application.csproj", "{97D4164C-0198-4668-AFED-63877CE53AAD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Order.Domain", "src\Services\Order\AutonomousFleet.Services.Order.Domain\AutonomousFleet.Services.Order.Domain.csproj", "{EB7E5249-C370-4ED6-8C46-9CD0DCE59446}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Order.Infrastructure", "src\Services\Order\AutonomousFleet.Services.Order.Infrastructure\AutonomousFleet.Services.Order.Infrastructure.csproj", "{C573BDCF-861C-4DA3-B04E-266BED9D2C4C}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Order.Persistence", "src\Services\Order\AutonomousFleet.Services.Order.Persistence\AutonomousFleet.Services.Order.Persistence.csproj", "{10025F4C-DE3A-442B-B191-DC13E2530629}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.API", "Order.API\Order.API.csproj", "{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,66 +10,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BF832829-8DA8-4834-BE72-93E914022313}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BF832829-8DA8-4834-BE72-93E914022313}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BF832829-8DA8-4834-BE72-93E914022313}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BF832829-8DA8-4834-BE72-93E914022313}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D86EB511-4C73-444B-B664-60316C2139F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D86EB511-4C73-444B-B664-60316C2139F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D86EB511-4C73-444B-B664-60316C2139F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D86EB511-4C73-444B-B664-60316C2139F8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E1EFD99B-5696-480E-88FF-91D571F42992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E1EFD99B-5696-480E-88FF-91D571F42992}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E1EFD99B-5696-480E-88FF-91D571F42992}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E1EFD99B-5696-480E-88FF-91D571F42992}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2FCC21D6-E774-4FCE-8DC9-E65DC871BA5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2FCC21D6-E774-4FCE-8DC9-E65DC871BA5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2FCC21D6-E774-4FCE-8DC9-E65DC871BA5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2FCC21D6-E774-4FCE-8DC9-E65DC871BA5C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF1FCDEE-5F41-4530-B6BB-79BB7EAA5E06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF1FCDEE-5F41-4530-B6BB-79BB7EAA5E06}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF1FCDEE-5F41-4530-B6BB-79BB7EAA5E06}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF1FCDEE-5F41-4530-B6BB-79BB7EAA5E06}.Release|Any CPU.Build.0 = Release|Any CPU
-		{43879DD3-7EF8-4CC9-80AF-3B8FA479A944}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{43879DD3-7EF8-4CC9-80AF-3B8FA479A944}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{43879DD3-7EF8-4CC9-80AF-3B8FA479A944}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{43879DD3-7EF8-4CC9-80AF-3B8FA479A944}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97D4164C-0198-4668-AFED-63877CE53AAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97D4164C-0198-4668-AFED-63877CE53AAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97D4164C-0198-4668-AFED-63877CE53AAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97D4164C-0198-4668-AFED-63877CE53AAD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EB7E5249-C370-4ED6-8C46-9CD0DCE59446}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB7E5249-C370-4ED6-8C46-9CD0DCE59446}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB7E5249-C370-4ED6-8C46-9CD0DCE59446}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB7E5249-C370-4ED6-8C46-9CD0DCE59446}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C573BDCF-861C-4DA3-B04E-266BED9D2C4C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C573BDCF-861C-4DA3-B04E-266BED9D2C4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C573BDCF-861C-4DA3-B04E-266BED9D2C4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C573BDCF-861C-4DA3-B04E-266BED9D2C4C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{10025F4C-DE3A-442B-B191-DC13E2530629}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{10025F4C-DE3A-442B-B191-DC13E2530629}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{10025F4C-DE3A-442B-B191-DC13E2530629}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{10025F4C-DE3A-442B-B191-DC13E2530629}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{AA78F6BB-9EA3-42BD-8E44-24F770DEFE96} = {F65E5B31-6199-47FC-B64E-47857A889A83}
-		{192E3B36-8E7D-4E4D-8C00-BD4037741D5F} = {AA78F6BB-9EA3-42BD-8E44-24F770DEFE96}
-		{BF832829-8DA8-4834-BE72-93E914022313} = {192E3B36-8E7D-4E4D-8C00-BD4037741D5F}
-		{D86EB511-4C73-444B-B664-60316C2139F8} = {192E3B36-8E7D-4E4D-8C00-BD4037741D5F}
-		{E1EFD99B-5696-480E-88FF-91D571F42992} = {192E3B36-8E7D-4E4D-8C00-BD4037741D5F}
-		{2FCC21D6-E774-4FCE-8DC9-E65DC871BA5C} = {192E3B36-8E7D-4E4D-8C00-BD4037741D5F}
-		{AF1FCDEE-5F41-4530-B6BB-79BB7EAA5E06} = {192E3B36-8E7D-4E4D-8C00-BD4037741D5F}
-		{F00AB56A-0B39-44E1-AA7B-2643E61D10C3} = {AA78F6BB-9EA3-42BD-8E44-24F770DEFE96}
-		{43879DD3-7EF8-4CC9-80AF-3B8FA479A944} = {F00AB56A-0B39-44E1-AA7B-2643E61D10C3}
-		{97D4164C-0198-4668-AFED-63877CE53AAD} = {F00AB56A-0B39-44E1-AA7B-2643E61D10C3}
-		{EB7E5249-C370-4ED6-8C46-9CD0DCE59446} = {F00AB56A-0B39-44E1-AA7B-2643E61D10C3}
-		{C573BDCF-861C-4DA3-B04E-266BED9D2C4C} = {F00AB56A-0B39-44E1-AA7B-2643E61D10C3}
-		{10025F4C-DE3A-442B-B191-DC13E2530629} = {F00AB56A-0B39-44E1-AA7B-2643E61D10C3}
 	EndGlobalSection
 EndGlobal

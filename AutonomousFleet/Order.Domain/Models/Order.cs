@@ -1,4 +1,4 @@
-namespace AutonomousFleet.Domain.Models;
+namespace Order.Domain.Models;
 
 public class Order
 {
@@ -9,5 +9,4 @@ public class Order
     public bool Completed { get; private set; }
     public bool Failed { get; private set; }
     public bool Cancelled { get; private set; }
-    
 }
