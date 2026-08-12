@@ -1,12 +1,12 @@
-﻿using AutonomousFleet.Services.Order.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using OrderEntity = AutonomousFleet.Services.Order.Domain.Entities.Order;
 
 namespace AutonomousFleet.Services.Order.Persistence.Configurations;
 
-public class OrderConfiguration : IEntityTypeConfiguration<Order>
+public class OrderConfiguration : IEntityTypeConfiguration<OrderEntity>
 {
-    public void Configure(EntityTypeBuilder<Order> builder)
+    public void Configure(EntityTypeBuilder<OrderEntity> builder)
     {
         builder.ToTable("orders");
 

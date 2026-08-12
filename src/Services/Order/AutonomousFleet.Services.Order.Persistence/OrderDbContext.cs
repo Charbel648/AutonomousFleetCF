@@ -1,6 +1,6 @@
 ﻿using AutonomousFleet.Services.Order.Application.Abstractions.Tenancy;
-using AutonomousFleet.Services.Order.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
+using OrderEntity = AutonomousFleet.Services.Order.Domain.Entities.Order;
 
 namespace AutonomousFleet.Services.Order.Persistence;
 
@@ -16,13 +16,13 @@ public class OrderDbContext : DbContext
         _tenantContext = tenantContext;
     }
 
-    public DbSet<Order> Orders => Set<Order>();
+    public DbSet<OrderEntity> Orders => Set<OrderEntity>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(OrderDbContext).Assembly);
 
-        modelBuilder.Entity<Order>()
+        modelBuilder.Entity<OrderEntity>()
             .HasQueryFilter(order => order.TenantId == _tenantContext.TenantId);
 
         base.OnModelCreating(modelBuilder);

@@ -1,12 +1,12 @@
-﻿using AutonomousFleet.Services.Order.Domain.Entities;
+﻿using OrderEntity = AutonomousFleet.Services.Order.Domain.Entities.Order;
 
 namespace AutonomousFleet.Services.Order.Application.Abstractions.Persistence;
 
 public interface IOrderRepository
 {
-    Task AddAsync(Order order, CancellationToken cancellationToken);
+    Task AddAsync(OrderEntity order, CancellationToken cancellationToken);
 
-    Task<List<Order>> GetByTenantAsync(CancellationToken cancellationToken);
+    Task<List<OrderEntity>> GetByTenantAsync(CancellationToken cancellationToken);
 
-    Task<Order?> GetByIdAsync(string orderId, CancellationToken cancellationToken);
+    Task<OrderEntity?> GetByIdAsync(string orderId, CancellationToken cancellationToken);
 }

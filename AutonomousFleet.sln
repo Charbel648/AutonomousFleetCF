@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Or
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Services.Order.Persistence", "src\Services\Order\AutonomousFleet.Services.Order.Persistence\AutonomousFleet.Services.Order.Persistence.csproj", "{10025F4C-DE3A-442B-B191-DC13E2530629}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Order.API", "Order.API\Order.API.csproj", "{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -80,6 +82,10 @@ Global
 		{10025F4C-DE3A-442B-B191-DC13E2530629}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10025F4C-DE3A-442B-B191-DC13E2530629}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10025F4C-DE3A-442B-B191-DC13E2530629}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC8B4E87-2147-40FB-BE34-1EDC9D6A5EEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{AA78F6BB-9EA3-42BD-8E44-24F770DEFE96} = {F65E5B31-6199-47FC-B64E-47857A889A83}

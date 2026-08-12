@@ -1,11 +1,10 @@
-﻿using AutonomousFleet.Services.Order.Application.Orders.Dtos;
-using AutonomousFleet.Services.Order.Domain.Entities;
+﻿using OrderEntity = AutonomousFleet.Services.Order.Domain.Entities.Order;
 
 namespace AutonomousFleet.Services.Order.Application.Orders.Dtos;
 
 public static class OrderMappings
 {
-    public static OrderDto ToDto(this Order order)
+    public static OrderDto ToDto(this OrderEntity order)
     {
         return new OrderDto
         {

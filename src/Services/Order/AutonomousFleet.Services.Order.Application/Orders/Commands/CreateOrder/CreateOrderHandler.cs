@@ -1,8 +1,8 @@
 ﻿using AutonomousFleet.Services.Order.Application.Abstractions.Persistence;
 using AutonomousFleet.Services.Order.Application.Abstractions.Tenancy;
 using AutonomousFleet.Services.Order.Application.Orders.Dtos;
-using AutonomousFleet.Services.Order.Domain.Entities;
 using MediatR;
+using OrderEntity = AutonomousFleet.Services.Order.Domain.Entities.Order;
 
 namespace AutonomousFleet.Services.Order.Application.Orders.Commands.CreateOrder;
 
@@ -26,7 +26,7 @@ public class CreateOrderHandler : IRequestHandler<CreateOrderCommand, OrderDto>
         if (!_tenantContext.HasTenant)
             throw new InvalidOperationException("Tenant context is required");
 
-        var order = new Order(
+        var order = new OrderEntity(
             _tenantContext.TenantId,
             request.CustomerId,
             request.PickupAddress,
