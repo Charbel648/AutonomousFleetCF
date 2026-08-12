@@ -7,9 +7,9 @@ services:
     environment:
       POSTGRES_DB: fleetdb
       POSTGRES_USER: fleet
-      POSTGRES_PASSWORD: fleet
+      POSTGRES_PASSWORD: fleet123
     ports:
-      - "5433:5432"
+      - "55433:5432"
     volumes:
       - fleet-postgres-data:/var/lib/postgresql/data
 

@@ -8,7 +8,7 @@ public class FleetDbContextFactory : Microsoft.EntityFrameworkCore.Design.IDesig
     public FleetDbContext CreateDbContext(string[] args)
     {
         var options = new DbContextOptionsBuilder<FleetDbContext>()
-            .UseNpgsql("Host=localhost;Port=5433;Database=fleetdb;Username=fleet;Password=fleet")
+            .UseNpgsql("Host=localhost;Port=55433;Database=fleetdb;Username=fleet;Password=fleet123")
             .Options;
 
         return new FleetDbContext(options, new DesignTimeTenantContext());
