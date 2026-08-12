@@ -2,6 +2,7 @@
 using System.Text;
 using Fleet.API.Auth;
 using Fleet.API.Middleware;
+using Fleet.API.Swagger;
 using Fleet.API.Tenancy;
 using Fleet.API.Validation;
 using Fleet.Application;
@@ -77,6 +78,7 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+    options.OperationFilter<TenantHeaderOperationFilter>();
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -121,4 +123,6 @@ app.Run();
 public partial class Program
 {
 }
+
+
 

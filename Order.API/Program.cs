@@ -5,6 +5,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Order.API.Auth;
 using Order.API.Middleware;
+using Order.API.Swagger;
 using Order.API.Tenancy;
 using Order.API.Validation;
 using Order.Application;
@@ -73,6 +74,7 @@ builder.Services.AddControllers(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
+    options.OperationFilter<TenantHeaderOperationFilter>();
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
         Name = "Authorization",
@@ -117,4 +119,6 @@ app.Run();
 public partial class Program
 {
 }
+
+
 
