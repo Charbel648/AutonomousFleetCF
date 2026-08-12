@@ -16,7 +16,8 @@ public class TenantMiddleware
         HttpContext context,
         ITenantContextSetter tenantContextSetter)
     {
-        if (context.Request.Path.StartsWithSegments("/swagger"))
+        if (context.Request.Path.StartsWithSegments("/swagger")
+            || context.Request.Path.StartsWithSegments("/auth"))
         {
             await _next(context);
             return;
