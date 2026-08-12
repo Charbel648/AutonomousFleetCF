@@ -1,0 +1,46 @@
+﻿version: "3.9"
+
+services:
+  fleet-postgres:
+    image: postgres:16
+    container_name: autonomousfleet-fleet-postgres
+    environment:
+      POSTGRES_DB: fleetdb
+      POSTGRES_USER: fleet
+      POSTGRES_PASSWORD: fleet123
+    ports:
+      - "55433:5432"
+    volumes:
+      - fleet-postgres-data:/var/lib/postgresql/data
+
+  order-postgres:
+    image: postgres:16
+    container_name: autonomousfleet-order-postgres
+    environment:
+      POSTGRES_DB: orderdb
+      POSTGRES_USER: orders
+      POSTGRES_PASSWORD: orders
+    ports:
+      - "5434:5432"
+    volumes:
+      - order-postgres-data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7
+    container_name: autonomousfleet-redis
+    ports:
+      - "6379:6379"
+
+  rabbitmq:
+    image: rabbitmq:3-management
+    container_name: autonomousfleet-rabbitmq
+    environment:
+      RABBITMQ_DEFAULT_USER: autonomous
+      RABBITMQ_DEFAULT_PASS: autonomous
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+
+volumes:
+  fleet-postgres-data:
+  order-postgres-data:
