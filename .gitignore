@@ -10,4 +10,3 @@ obj/
 .env
 TestResults/
 **/TestResults/
-.vscode/
