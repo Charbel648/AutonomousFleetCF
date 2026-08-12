@@ -1,4 +1,7 @@
-﻿using FluentValidation;
+﻿using System.Reflection;
+using Fleet.Application.Common.Behaviors;
+using FluentValidation;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Fleet.Application;
@@ -7,10 +10,16 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddFleetApplication(this IServiceCollection services)
     {
-        services.AddMediatR(configuration =>
-            configuration.RegisterServicesFromAssembly(typeof(DependencyInjection).Assembly));
+        var assembly = Assembly.GetExecutingAssembly();
 
-        services.AddValidatorsFromAssembly(typeof(DependencyInjection).Assembly);
+        services.AddMediatR(configuration =>
+        {
+            configuration.RegisterServicesFromAssembly(assembly);
+        });
+
+        services.AddValidatorsFromAssembly(assembly);
+
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
 
         return services;
     }

@@ -1,5 +1,4 @@
 ﻿using Fleet.Domain.Entities;
-using Fleet.Domain.Enums;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -16,44 +15,57 @@ public class VehicleConfiguration : IEntityTypeConfiguration<Vehicle>
         builder.Ignore(vehicle => vehicle.Id);
 
         builder.Property(vehicle => vehicle.TenantId)
-            .IsRequired()
-            .HasMaxLength(100);
+            .HasColumnName("tenant_id")
+            .HasMaxLength(100)
+            .IsRequired();
 
         builder.Property(vehicle => vehicle.RegistrationNumber)
-            .IsRequired()
-            .HasMaxLength(50);
+            .HasColumnName("registration_number")
+            .HasMaxLength(100)
+            .IsRequired();
 
         builder.Property(vehicle => vehicle.Status)
-            .HasConversion(
-                status => status.ToString(),
-                value => Enum.Parse<VehicleStatus>(value))
-            .IsRequired()
-            .HasMaxLength(50);
+            .HasColumnName("status")
+            .HasConversion<string>()
+            .HasMaxLength(50)
+            .IsRequired();
 
         builder.Property(vehicle => vehicle.BatteryLevel)
-            .HasPrecision(5, 2)
+            .HasColumnName("battery_level")
             .IsRequired();
 
         builder.Property(vehicle => vehicle.Latitude)
-            .HasPrecision(10, 7)
+            .HasColumnName("latitude")
+            .HasPrecision(9, 6)
             .IsRequired();
 
         builder.Property(vehicle => vehicle.Longitude)
-            .HasPrecision(10, 7)
+            .HasColumnName("longitude")
+            .HasPrecision(9, 6)
+            .IsRequired();
+
+        builder.Property(vehicle => vehicle.TelemetryData)
+            .HasColumnName("telemetry_data")
+            .HasColumnType("jsonb")
+            .HasDefaultValueSql("'{}'::jsonb")
             .IsRequired();
 
         builder.Property(vehicle => vehicle.LastTelemetryAt)
+            .HasColumnName("last_telemetry_at")
             .IsRequired();
 
         builder.Property(vehicle => vehicle.CreatedAt)
+            .HasColumnName("created_at")
             .IsRequired();
 
         builder.Property(vehicle => vehicle.LastUpdatedAt)
+            .HasColumnName("last_updated_at")
             .IsRequired();
 
-        builder.HasIndex(vehicle => new { vehicle.TenantId, vehicle.VehicleId });
-
-        builder.HasIndex(vehicle => new { vehicle.TenantId, vehicle.RegistrationNumber })
-            .IsUnique();
+        builder.HasIndex(vehicle => new
+        {
+            vehicle.TenantId,
+            vehicle.RegistrationNumber
+        }).IsUnique();
     }
 }

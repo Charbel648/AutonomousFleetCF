@@ -1,12 +1,8 @@
-﻿using Order.Domain.Enums;
-
-namespace Order.Application.Orders.Dtos;
+﻿namespace Order.Application.Orders.Dtos;
 
 public class OrderDto
 {
     public Guid Id { get; set; }
-
-    public string TenantId { get; set; } = string.Empty;
 
     public string CustomerId { get; set; } = string.Empty;
 
@@ -16,7 +12,9 @@ public class OrderDto
 
     public Guid? AssignedVehicleId { get; set; }
 
-    public OrderStatus Status { get; set; }
+    public string Status { get; set; } = string.Empty;
+
+    public int PriorityScore { get; set; }
 
     public DateTime CreatedAt { get; set; }
 

@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Fleet.Application\Fleet.Application.csproj" />
-    <ProjectReference Include="..\Fleet.Infrastructure\Fleet.Infrastructure.csproj" />
     <ProjectReference Include="..\Fleet.Persistance\Fleet.Persistance.csproj" />
   </ItemGroup>
 

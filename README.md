@@ -61,9 +61,7 @@ Fail order
 Cancel order
 
 
-Located in:
-
-Fleet.Domain/Entities/Vehicle.cs
+In Fleet.Domain/Entities/Vehicle.cs:
 
 
 The Vehicle aggregate manages vehicle state, battery information, and coordinate telemetry.
@@ -104,3 +102,26 @@ All requests must include:
 X-Tenant-Id: tenant-a
 
 The tenant header is required because the system uses multi-tenant isolation.
+
+
+The JWT Bearer Authentication is a token to authenticate and give access to selected staff like admins, it does not allow anyone without the token to change or access data.
+To get the token you need to fill the header with an id, a password and a tenantId and then you input the token to authorize access.
+
+
+
+The database schema was updated without deleting or resetting the existing database tables.
+
+The goal was to evolve the system by adding new fields to the existing domain entities and then generating a new Entity Framework Core migration.
+
+TelemetryData stores extra telemetry information about the vehicle, such as speed, efficiency, sensor data, or real-time profiling values.
+
+PriorityScore allows the system to give an order a priority level.
+
+
+We used the following commands for migration:
+
+dotnet ef migrations add AddTelemetryAndPriorityFields --project .\Order.Persistance\Order.Persistance.csproj --startup-project .\Order.API\Order.API.csproj
+dotnet ef migrations add AddTelemetryAndPriorityFields --project .\Fleet.Persistance\Fleet.Persistance.csproj --startup-project .\Fleet.API\Fleet.API.csproj
+
+
+
