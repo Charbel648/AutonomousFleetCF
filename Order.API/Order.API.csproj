@@ -19,7 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Order.Application\Order.Application.csproj" />
-    <ProjectReference Include="..\Order.Infrastructure\Order.Infrastructure.csproj" />
     <ProjectReference Include="..\Order.Persistance\Order.Persistance.csproj" />
   </ItemGroup>
 
