@@ -15,7 +15,7 @@ public class ListTenantVehiclesHandler : IRequestHandler<ListTenantVehiclesQuery
 
     public async Task<List<VehicleDto>> Handle(ListTenantVehiclesQuery request, CancellationToken cancellationToken)
     {
-        var vehicles = await _vehicleRepository.GetByTenantAsync(request.TenantId, cancellationToken);
+        var vehicles = await _vehicleRepository.GetByTenantAsync(cancellationToken);
 
         return vehicles.Select(vehicle => vehicle.ToDto()).ToList();
     }

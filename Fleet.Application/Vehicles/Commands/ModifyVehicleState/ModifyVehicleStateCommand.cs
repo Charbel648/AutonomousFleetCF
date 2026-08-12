@@ -10,8 +10,5 @@ public class ModifyVehicleStateCommand : IRequest<VehicleDto?>
     [JsonIgnore]
     public Guid VehicleId { get; set; }
 
-    [JsonIgnore]
-    public string TenantId { get; set; } = string.Empty;
-
     public VehicleStatus Status { get; set; }
 }

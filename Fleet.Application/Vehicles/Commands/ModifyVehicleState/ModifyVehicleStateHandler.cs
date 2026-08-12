@@ -17,7 +17,6 @@ public class ModifyVehicleStateHandler : IRequestHandler<ModifyVehicleStateComma
     {
         var vehicle = await _vehicleRepository.GetByIdAsync(
             request.VehicleId,
-            request.TenantId,
             cancellationToken);
 
         if (vehicle is null)

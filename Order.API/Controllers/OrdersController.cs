@@ -11,7 +11,6 @@ namespace Order.API.Controllers;
 [Route("orders")]
 public class OrdersController : ControllerBase
 {
-    private const string TenantHeaderName = "X-Tenant-Id";
     private readonly IMediator _mediator;
 
     public OrdersController(IMediator mediator)
@@ -24,11 +23,6 @@ public class OrdersController : ControllerBase
         [FromBody] CreateOrderCommand command,
         CancellationToken cancellationToken)
     {
-        if (!TryGetTenantId(out var tenantId))
-            return BadRequest(new { Message = "Missing X-Tenant-Id header" });
-
-        command.TenantId = tenantId;
-
         var order = await _mediator.Send(command, cancellationToken);
 
         return CreatedAtAction(nameof(GetOrderDetails), new { id = order.Id }, order);
@@ -37,13 +31,7 @@ public class OrdersController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<OrderDto>>> ListTenantOrders(CancellationToken cancellationToken)
     {
-        if (!TryGetTenantId(out var tenantId))
-            return BadRequest(new { Message = "Missing X-Tenant-Id header" });
-
-        var orders = await _mediator.Send(new ListTenantOrdersQuery
-        {
-            TenantId = tenantId
-        }, cancellationToken);
+        var orders = await _mediator.Send(new ListTenantOrdersQuery(), cancellationToken);
 
         return Ok(orders);
     }
@@ -53,30 +41,14 @@ public class OrdersController : ControllerBase
         [FromRoute] Guid id,
         CancellationToken cancellationToken)
     {
-        if (!TryGetTenantId(out var tenantId))
-            return BadRequest(new { Message = "Missing X-Tenant-Id header" });
-
         var order = await _mediator.Send(new GetOrderDetailsQuery
         {
-            OrderId = id,
-            TenantId = tenantId
+            OrderId = id
         }, cancellationToken);
 
         if (order is null)
             return NotFound(new { Message = $"Order '{id}' was not found" });
 
         return Ok(order);
-    }
-
-    private bool TryGetTenantId(out string tenantId)
-    {
-        tenantId = string.Empty;
-
-        if (!Request.Headers.TryGetValue(TenantHeaderName, out var value))
-            return false;
-
-        tenantId = value.ToString().Trim();
-
-        return !string.IsNullOrWhiteSpace(tenantId);
     }
 }

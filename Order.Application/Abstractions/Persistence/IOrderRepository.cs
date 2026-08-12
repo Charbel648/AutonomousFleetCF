@@ -6,7 +6,7 @@ public interface IOrderRepository
 {
     Task AddAsync(OrderEntity order, CancellationToken cancellationToken);
 
-    Task<List<OrderEntity>> GetByTenantAsync(string tenantId, CancellationToken cancellationToken);
+    Task<List<OrderEntity>> GetByTenantAsync(CancellationToken cancellationToken);
 
-    Task<OrderEntity?> GetByIdAsync(Guid orderId, string tenantId, CancellationToken cancellationToken);
+    Task<OrderEntity?> GetByIdAsync(Guid orderId, CancellationToken cancellationToken);
 }

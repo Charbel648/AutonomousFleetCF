@@ -15,7 +15,7 @@ public class ListTenantOrdersHandler : IRequestHandler<ListTenantOrdersQuery, Li
 
     public async Task<List<OrderDto>> Handle(ListTenantOrdersQuery request, CancellationToken cancellationToken)
     {
-        var orders = await _orderRepository.GetByTenantAsync(request.TenantId, cancellationToken);
+        var orders = await _orderRepository.GetByTenantAsync(cancellationToken);
 
         return orders.Select(order => order.ToDto()).ToList();
     }

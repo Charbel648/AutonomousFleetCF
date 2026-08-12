@@ -19,22 +19,18 @@ public class VehicleRepository : IVehicleRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<List<Vehicle>> GetByTenantAsync(string tenantId, CancellationToken cancellationToken)
+    public async Task<List<Vehicle>> GetByTenantAsync(CancellationToken cancellationToken)
     {
         return await _context.Vehicles
             .AsNoTracking()
-            .Where(vehicle => vehicle.TenantId == tenantId)
             .OrderBy(vehicle => vehicle.RegistrationNumber)
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<Vehicle?> GetByIdAsync(Guid vehicleId, string tenantId, CancellationToken cancellationToken)
+    public async Task<Vehicle?> GetByIdAsync(Guid vehicleId, CancellationToken cancellationToken)
     {
         return await _context.Vehicles
-            .FirstOrDefaultAsync(vehicle =>
-                vehicle.VehicleId == vehicleId &&
-                vehicle.TenantId == tenantId,
-                cancellationToken);
+            .FirstOrDefaultAsync(vehicle => vehicle.VehicleId == vehicleId, cancellationToken);
     }
 
     public async Task UpdateAsync(Vehicle vehicle, CancellationToken cancellationToken)

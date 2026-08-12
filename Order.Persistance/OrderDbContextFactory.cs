@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Design;
+using Order.Persistance.Tenancy;
 
 namespace Order.Persistance;
 
-public class OrderDbContextFactory : IDesignTimeDbContextFactory<OrderDbContext>
+public class OrderDbContextFactory : Microsoft.EntityFrameworkCore.Design.IDesignTimeDbContextFactory<OrderDbContext>
 {
     public OrderDbContext CreateDbContext(string[] args)
     {
@@ -11,6 +11,6 @@ public class OrderDbContextFactory : IDesignTimeDbContextFactory<OrderDbContext>
             .UseNpgsql("Host=localhost;Port=5434;Database=orderdb;Username=orders;Password=orders")
             .Options;
 
-        return new OrderDbContext(options);
+        return new OrderDbContext(options, new DesignTimeTenantContext());
     }
 }

@@ -1,8 +1,17 @@
-﻿using Fleet.API.Validation;
+﻿using Fleet.API.Middleware;
+using Fleet.API.Tenancy;
+using Fleet.API.Validation;
 using Fleet.Application;
+using Fleet.Application.Abstractions.Tenancy;
 using Fleet.Persistance;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddScoped<TenantContext>();
+builder.Services.AddScoped<ITenantContext>(provider =>
+    provider.GetRequiredService<TenantContext>());
+builder.Services.AddScoped<ITenantContextSetter>(provider =>
+    provider.GetRequiredService<TenantContext>());
 
 builder.Services.AddFleetApplication();
 builder.Services.AddFleetPersistance(builder.Configuration);
@@ -19,6 +28,8 @@ var app = builder.Build();
 
 app.UseSwagger();
 app.UseSwaggerUI();
+
+app.UseMiddleware<TenantMiddleware>();
 
 app.MapControllers();
 

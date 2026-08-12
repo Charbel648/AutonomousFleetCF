@@ -17,7 +17,6 @@ public class GetOrderDetailsHandler : IRequestHandler<GetOrderDetailsQuery, Orde
     {
         var order = await _orderRepository.GetByIdAsync(
             request.OrderId,
-            request.TenantId,
             cancellationToken);
 
         return order?.ToDto();

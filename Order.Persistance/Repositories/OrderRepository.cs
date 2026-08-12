@@ -19,22 +19,18 @@ public class OrderRepository : IOrderRepository
         await _context.SaveChangesAsync(cancellationToken);
     }
 
-    public async Task<List<OrderEntity>> GetByTenantAsync(string tenantId, CancellationToken cancellationToken)
+    public async Task<List<OrderEntity>> GetByTenantAsync(CancellationToken cancellationToken)
     {
         return await _context.Orders
             .AsNoTracking()
-            .Where(order => order.TenantId == tenantId)
             .OrderByDescending(order => order.CreatedAt)
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<OrderEntity?> GetByIdAsync(Guid orderId, string tenantId, CancellationToken cancellationToken)
+    public async Task<OrderEntity?> GetByIdAsync(Guid orderId, CancellationToken cancellationToken)
     {
         return await _context.Orders
             .AsNoTracking()
-            .FirstOrDefaultAsync(order =>
-                order.OrderId == orderId &&
-                order.TenantId == tenantId,
-                cancellationToken);
+            .FirstOrDefaultAsync(order => order.OrderId == orderId, cancellationToken);
     }
 }
