@@ -1,4 +1,4 @@
-@AutonomousFleet.Services.Order.API_HostAddress = http://localhost:5011
+@AutonomousFleet.Services.Order.API_HostAddress = http://localhost:5119
 
 GET {{AutonomousFleet.Services.Order.API_HostAddress}}/weatherforecast/
 Accept: application/json

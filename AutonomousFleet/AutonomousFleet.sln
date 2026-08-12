@@ -2,6 +2,16 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet", "AutonomousFleet\AutonomousFleet.csproj", "{B7136C73-74A1-4B57-8AE8-BF463E95475E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Domain", "AutonomousFleet.Domain\AutonomousFleet.Domain.csproj", "{EC06817A-A4C1-4EB7-9117-CBE4C693ED05}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Application", "AutonomousFleet.Application\AutonomousFleet.Application.csproj", "{89BA35BA-0F2D-49A7-BE3C-A1E2AA06DF0E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Infrastructure", "AutonomousFleet.Infrastructure\AutonomousFleet.Infrastructure.csproj", "{09E26A5E-204B-47A7-8A62-73A2A25D8293}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.Persistance", "AutonomousFleet.Persistance\AutonomousFleet.Persistance.csproj", "{5126ECD0-E656-4742-991F-CDCC2469098A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutonomousFleet.API", "AutonomousFleet.API\AutonomousFleet.API.csproj", "{82D952F5-A3B4-4A14-B5A3-4FE17DFAC1B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +22,25 @@ Global
 		{B7136C73-74A1-4B57-8AE8-BF463E95475E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B7136C73-74A1-4B57-8AE8-BF463E95475E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B7136C73-74A1-4B57-8AE8-BF463E95475E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EC06817A-A4C1-4EB7-9117-CBE4C693ED05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EC06817A-A4C1-4EB7-9117-CBE4C693ED05}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EC06817A-A4C1-4EB7-9117-CBE4C693ED05}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EC06817A-A4C1-4EB7-9117-CBE4C693ED05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89BA35BA-0F2D-49A7-BE3C-A1E2AA06DF0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89BA35BA-0F2D-49A7-BE3C-A1E2AA06DF0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89BA35BA-0F2D-49A7-BE3C-A1E2AA06DF0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89BA35BA-0F2D-49A7-BE3C-A1E2AA06DF0E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09E26A5E-204B-47A7-8A62-73A2A25D8293}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09E26A5E-204B-47A7-8A62-73A2A25D8293}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09E26A5E-204B-47A7-8A62-73A2A25D8293}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09E26A5E-204B-47A7-8A62-73A2A25D8293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5126ECD0-E656-4742-991F-CDCC2469098A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5126ECD0-E656-4742-991F-CDCC2469098A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5126ECD0-E656-4742-991F-CDCC2469098A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5126ECD0-E656-4742-991F-CDCC2469098A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{82D952F5-A3B4-4A14-B5A3-4FE17DFAC1B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{82D952F5-A3B4-4A14-B5A3-4FE17DFAC1B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{82D952F5-A3B4-4A14-B5A3-4FE17DFAC1B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{82D952F5-A3B4-4A14-B5A3-4FE17DFAC1B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
